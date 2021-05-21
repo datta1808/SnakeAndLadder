@@ -38,6 +38,8 @@ public class SnakeAndLadder {
 
     public static void main(String[] args) {
 
+        int numberOfDiceRoll = 0;
+
         while (getPlayerPosition() != WIN_POSITION) {
 
             int numberOnDice = rollDice();
@@ -59,7 +61,9 @@ public class SnakeAndLadder {
             else if (playerMove == SNAKE) {
                 setPlayerPosition(getPlayerPosition() - numberOnDice);
             }
-            System.out.println(getPlayerPosition());
+            numberOfDiceRoll++;
+            System.out.println("no. of times dice thrown : " + numberOfDiceRoll + " and Position of player is: " +getPlayerPosition());
         }
+        System.out.println("Number of times dice was played " + numberOfDiceRoll);
     }
 }
