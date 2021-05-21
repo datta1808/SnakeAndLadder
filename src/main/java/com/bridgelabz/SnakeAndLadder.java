@@ -10,8 +10,9 @@ public class SnakeAndLadder {
     public static final int SNAKE = 2;
     //initialized the user position with start position
     static int PLAYER_POSITION = STARTING_POSITION;
+    public static final int WIN_POSITION = 100;
 
-    // method to get the value of dice
+    // method to get the value of dice between 1 to 6
     public static int rollDice(){
         Random random = new Random();
         int diceValue = random.nextInt(6)+1;
@@ -37,16 +38,21 @@ public class SnakeAndLadder {
 
     public static void main(String[] args) {
 
-        int numberOnDice = rollDice();
-        int playerMove = moves();
+        while (getPlayerPosition() < WIN_POSITION) {
+            int numberOnDice = rollDice();
+            int playerMove = moves();
 
-        if(playerMove == NO_PLAY) {
-          setPlayerPosition(getPlayerPosition());
-        } else if(playerMove == LADDER) {
-            setPlayerPosition(getPlayerPosition() + rollDice());
-        } else if(playerMove == SNAKE) {
-            setPlayerPosition(getPlayerPosition() - rollDice());
+            if(getPlayerPosition() < 1) {
+                setPlayerPosition(STARTING_POSITION);
+            }
+            if (playerMove == NO_PLAY) {
+                setPlayerPosition(getPlayerPosition());
+            } else if (playerMove == LADDER) {
+                setPlayerPosition(getPlayerPosition() + rollDice());
+            } else if (playerMove == SNAKE) {
+                setPlayerPosition(getPlayerPosition() - rollDice());
+            }
+            System.out.println(getPlayerPosition());
         }
-        System.out.println(getPlayerPosition());
     }
 }
