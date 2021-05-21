@@ -38,7 +38,8 @@ public class SnakeAndLadder {
 
     public static void main(String[] args) {
 
-        while (getPlayerPosition() < WIN_POSITION) {
+        while (getPlayerPosition() != WIN_POSITION) {
+
             int numberOnDice = rollDice();
             int playerMove = moves();
 
@@ -47,10 +48,16 @@ public class SnakeAndLadder {
             }
             if (playerMove == NO_PLAY) {
                 setPlayerPosition(getPlayerPosition());
-            } else if (playerMove == LADDER) {
-                setPlayerPosition(getPlayerPosition() + rollDice());
-            } else if (playerMove == SNAKE) {
-                setPlayerPosition(getPlayerPosition() - rollDice());
+            }
+            else if (playerMove == LADDER) {
+                if (getPlayerPosition() + numberOnDice > WIN_POSITION) {
+                    setPlayerPosition(getPlayerPosition());
+                } else {
+                    setPlayerPosition(getPlayerPosition() + numberOnDice);
+                }
+            }
+            else if (playerMove == SNAKE) {
+                setPlayerPosition(getPlayerPosition() - numberOnDice);
             }
             System.out.println(getPlayerPosition());
         }
